@@ -2,7 +2,9 @@
 # Copyright 2016 Opener B.V. <https://opener.am>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from ..odoo_patch.odoo_patch import OdooPatch
 from openupgradelib import openupgrade_tools
+from threading import current_thread
 
 from odoo import _, fields, models
 from odoo.exceptions import UserError
@@ -63,7 +65,17 @@ class OpenupgradeGenerateRecordsWizard(models.TransientModel):
             {"state": "to install"}
         )
         self.env.cr.commit()  # pylint: disable=invalid-commit
-        Registry.new(self.env.cr.dbname, update_module=True)
+
+        # Patch the registry on the thread
+        thread = current_thread()
+        thread._openupgrade_registry = {}
+
+        # Regenerate the registry with monkeypatches that log the records
+        with OdooPatch():
+            Registry.new(self.env.cr.dbname, update_module=True)
+
+        # Free the registry
+        delattr(thread, '_openupgrade_registry')
 
         # Set domain property
         self.env.cr.execute(

@@ -49,7 +49,7 @@ class OpenupgradeInstallAllWizard(models.TransientModel):
         domain = self._domain_to_install(extra_domain=extra_domain)
         modules = self.env["ir.module.module"].search(domain)
         if modules:
-            modules.write({"state": "to install"})
+            modules.button_install()
             self.env.cr.commit()  # pylint: disable=invalid-commit
             Registry.new(self.env.cr.dbname, update_module=True)
             self.write({"state": "ready"})
