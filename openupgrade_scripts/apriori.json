@@ -1,0 +1,11 @@
+{
+  "__comment__": "Renamed modules is a mapping from old module name to new module name",
+  "renamed_modules": {},
+  "__comment__": "Merged modules contain a mapping from old module names to other, preexisting module names",
+  "merged_modules": {
+    "partner_bank_active": "base"
+  },
+  "__comment__": "The members below are only used to help the analysis process",
+  "renamed_models": {},
+  "merged_models": {}
+}
