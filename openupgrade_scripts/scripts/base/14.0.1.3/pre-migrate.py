@@ -9,6 +9,18 @@ from odoo import tools
 
 _logger = logging.getLogger(__name__)
 
+try:
+    from odoo.addons.openupgrade_scripts.apriori import merged_modules, renamed_modules
+except ImportError:
+    renamed_modules = {}
+    merged_modules = {}
+    _logger.warn(
+        "You are using openupgrade_framework without having"
+        " openupgrade_scripts module available."
+        " The upgrade process will not work properly."
+    )
+
+
 xmlid_renames = [
     # Module category renames were not detected by the analyze. These records
     # are created on the fly when intializing a new database in
@@ -90,11 +102,8 @@ def migrate(cr, version):
     """
     )
     # Perform module renames and merges
-    apriori = openupgrade._load_apriori()
-    openupgrade.update_module_names(cr, apriori.renamed_modules.items())
-    openupgrade.update_module_names(
-        cr, apriori.merged_modules.items(), merge_modules=True
-    )
+    openupgrade.update_module_names(cr, renamed_modules.items())
+    openupgrade.update_module_names(cr, merged_modules.items(), merge_modules=True)
 
     # Migrate partners from Fil to Tagalog
     # See https://github.com/odoo/odoo/commit/194ed76c5cc9
