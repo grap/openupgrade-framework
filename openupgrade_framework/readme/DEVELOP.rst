@@ -1,5 +1,5 @@
 The `odoo_patch` folder contains python files in a tree that mimicks the
-folter tree of the Odoo project. It contains a number of monkey patches
+folder tree of the Odoo project. It contains a number of monkey patches
 to improve the migration of an Odoo database between two major versions.
 
 So far, we are able to make everything work without overwriting large blocks

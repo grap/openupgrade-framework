@@ -12,8 +12,6 @@ OpenUpgrade migration scripts:
   of some unforeseen dependency, the deletion will be cancelled and a message
   is logged, after which the migration continues.
 * Prevent a number of log messages that do not apply when using OpenUpgrade.
-* Suppress log messages containing instructions for developers of Odoo S.A.
-  with regards to their own set of closed source migration scripts.
 * Suppress log messages about failed view validation, which are to be expected
   during a migration.
 * Run migration scripts for modules that are installed as new dependencies
