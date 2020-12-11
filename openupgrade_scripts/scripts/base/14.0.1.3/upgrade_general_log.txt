@@ -174,7 +174,7 @@ new model website.snippet.filter [module website]
 # Found in other module: 134
 # Found with different type: 0
 # In obsolete models: 581
-# New columns: 1706
+# New columns: 1705
 # Not matched: 908
 ---XML records in module 'general'---
 ERROR: module not in list of installed modules:
