@@ -7,6 +7,3 @@ NEW ir.rule: payment.payment_token_salesman_rule (noupdate)
 NEW ir.rule: payment.payment_transaction_billing_rule (noupdate)
 DEL ir.ui.view: payment.account_invoice_payment_acquirer_onboarding
 NEW payment.acquirer: payment.payment_acquirer_odoo_by_adyen (noupdate)
-NEW payment.icon: payment.payment_icon_cc_eps
-NEW payment.icon: payment.payment_icon_cc_giropay
-NEW payment.icon: payment.payment_icon_cc_p24
